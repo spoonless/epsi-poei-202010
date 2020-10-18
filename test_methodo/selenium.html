@@ -1,0 +1,494 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="fr" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Selenium &mdash; Documentation Les tests </title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom_rtd_theme.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Recherche" href="../search.html" />
+    <link rel="prev" title="Les tests unitaires automatisés en Python" href="unittest.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> Les tests
+          
+
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Recherche dans les pages" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Méthodologie autour des tests</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction à l’ingénierie des tests</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html#strategie-de-test-et-types-de-test">Stratégie de test et types de test</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="introduction.html#les-tests-de-non-regression">Les tests de non régression</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html#les-7-principes-des-tests">Les 7 principes des tests</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="test_acceptation.html">Les tests d’acceptation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="test_acceptation.html#methode-de-gestion-de-projet">Méthode de gestion de projet</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="test_acceptation.html#notion-d-exigence">Notion d’exigence</a></li>
+<li class="toctree-l3"><a class="reference internal" href="test_acceptation.html#recette-fonctionnelle">Recette fonctionnelle</a></li>
+<li class="toctree-l3"><a class="reference internal" href="test_acceptation.html#notion-de-cas-de-test">Notion de cas de test</a></li>
+<li class="toctree-l3"><a class="reference internal" href="test_acceptation.html#scenario-de-test">Scénario de test</a></li>
+<li class="toctree-l3"><a class="reference internal" href="test_acceptation.html#exercice">Exercice</a></li>
+<li class="toctree-l3"><a class="reference internal" href="test_acceptation.html#la-matrice-de-tracabilite-des-exigences">La matrice de traçabilité des exigences</a></li>
+<li class="toctree-l3"><a class="reference internal" href="test_acceptation.html#id1">Exercice</a></li>
+<li class="toctree-l3"><a class="reference internal" href="test_acceptation.html#rapport-de-test">Rapport de test</a></li>
+<li class="toctree-l3"><a class="reference internal" href="test_acceptation.html#id2">Exercice</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="test_acceptation.html#methodes-agiles">Méthodes agiles</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="test_acceptation.html#le-behavior-driven-developement-bdd">Le <em>Behavior Driven Developement</em> (BDD)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="unittest.html">Les tests unitaires automatisés en Python</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="unittest.html#structure-d-une-classe-de-test">Structure d’une classe de test</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="unittest.html#execution-des-tests">Exécution des tests</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="unittest.html#tester-des-exceptions">Tester des exceptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="unittest.html#utilisation-de-doublure">Utilisation de doublure</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="unittest.html#utilisation-d-un-objet-mock">Utilisation d’un objet <em>mock</em></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Selenium</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#selenium-ide">Selenium IDE</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#installation">Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#enregistrer-des-commandes">Enregistrer des commandes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#notion-de-commande">Notion de commande</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#finaliser-un-test">Finaliser un test</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sauver-les-tests">Sauver les tests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#creation-de-suites-de-tests">Création de suites de tests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#bonnes-pratiques">Bonnes pratiques</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#exercice">Exercice</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Les tests</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Selenium</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <div class="rst-breadcrumbs-buttons" role="navigation" aria-label="breadcrumb navigation">
+      
+      
+        <a href="unittest.html" class="btn btn-neutral float-left" title="Les tests unitaires automatisés en Python" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Précédent</a>
+      
+  </div>
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="selenium">
+<h1>Selenium<a class="headerlink" href="#selenium" title="Lien permanent vers ce titre">¶</a></h1>
+<p>Selenium est une suite d’outils permettant d’automatiser des interactions avec les
+navigateurs Web. Selenium n’est donc pas un outil complet pour automatiser des tests.
+Par contre, il peut très facilement s’intégrer avec des frameworks de test dans
+différents langages de programmation et permettre ainsi d’automatiser des tests
+pour des interfaces graphiques Web.</p>
+<p>Les outils fournis par Selenium sont :</p>
+<dl>
+<dt>Selenium IDE</dt><dd><p>L’IDE de Selenium se présente sous la forme d’une <em>addon</em> pour navigateur Web.
+Il permet d’enregistrer des scénarios de test à partir des actions de
+l’utilisateur. Cette solution s’adresse avant tout à des personnes ne
+maîtrisant par la programmation.</p>
+</dd>
+<dt>Le WebDriver</dt><dd><p>Le WebDriver est un module qui permet d’interagir par programmation avec un
+navigateur Web. Selenium fournit une API disponible pour plusieurs
+langages de programmation (Java, C#, Python, JavaScript, Ruby) afin de
+communiquer avec un WebDriver.</p>
+<p>Le Web Driver offre une alternative à Selenium IDE pour l’automatisation
+des tests d’intégration et d’acceptation impliquant un navigateur Web.</p>
+</dd>
+<dt>Grid</dt><dd><p>Grid permet d’exécuter les tests développer à partir de l’API du WebDriver
+sur plusieurs types de navigateurs Web et même sur plusieurs systèmes
+d’exploitation.</p>
+</dd>
+</dl>
+<div class="section" id="selenium-ide">
+<h2>Selenium IDE<a class="headerlink" href="#selenium-ide" title="Lien permanent vers ce titre">¶</a></h2>
+<p><a class="reference external" href="https://www.selenium.dev/selenium-ide/">Selenium IDE</a> permet d’enregistrer les actions d’un utilisateur dans un navigateur
+Web. Il peut être utilisé comme un outil d’automatisation de tests même pour
+des personnes qui ne maîtrisent pas de langage de programmation. Il peut
+également servir de base de travail en générant des fichiers sources de
+tests pour différents langages (Java, Python, C#…).</p>
+<p><a class="reference external" href="https://www.selenium.dev/selenium-ide/">Selenium IDE</a> a l’avantage d’une prise en main rapide (y compris pour des
+personnes qui ne réalisent pas de développement logiciel). Par contre, cette
+approche reste limitée pour la mise en place d’une vraie solution de test
+automatisée à l’échelle d’une application, notamment à cause d’une difficulté
+dans la maintenance et la lisibilité des tests.</p>
+<div class="section" id="installation">
+<h3>Installation<a class="headerlink" href="#installation" title="Lien permanent vers ce titre">¶</a></h3>
+<p><a class="reference external" href="https://www.selenium.dev/selenium-ide/">Selenium IDE</a> se présente comme un add-on à installer dans Chrome ou Firefox.</p>
+<dl class="simple">
+<dt>Chrome</dt><dd><p>Téléchargez l’addon sur <a class="reference external" href="https://chrome.google.com/webstore/detail/selenium-ide/mooikfkahbdckldjjndioackbalphokd">https://chrome.google.com/webstore/detail/selenium-ide/mooikfkahbdckldjjndioackbalphokd</a></p>
+</dd>
+<dt>Firefox</dt><dd><p>Téléchargez l’addon sur <a class="reference external" href="https://addons.mozilla.org/en-US/firefox/addon/selenium-ide/">https://addons.mozilla.org/en-US/firefox/addon/selenium-ide/</a></p>
+</dd>
+</dl>
+</div>
+<div class="section" id="enregistrer-des-commandes">
+<h3>Enregistrer des commandes<a class="headerlink" href="#enregistrer-des-commandes" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Dans un premier temps, <a class="reference external" href="https://www.selenium.dev/selenium-ide/">Selenium IDE</a> permet d’enregistrer les interactions
+de l’utilisateur avec un navigateur sous la forme d’une suite de commandes.
+Un scénario de test est donc une liste de commandes que l’on peut ensuite
+répéter automatiquement.</p>
+<p>Cliquez sur l’icône de <a class="reference external" href="https://www.selenium.dev/selenium-ide/">Selenium IDE</a> dans la barre d’outils de votre navigateur
+pour ouvrir l’IDE. Dans l’écran d’accueil de l’IDE, choisissez
+<span class="guilabel">Record a new test in a new project</span>. Vous devez ensuite donner le
+nom de votre projet et l’URI de base du site que vous voulez tester. L’IDE
+ouvre une nouvelle fenêtre pour afficher le site.</p>
+<div class="figure align-default" id="id2">
+<img alt="../_images/selenium_ide.png" src="../_images/selenium_ide.png" />
+<p class="caption"><span class="caption-text">L’interface de Selenium IDE</span><a class="headerlink" href="#id2" title="Lien permanent vers cette image">¶</a></p>
+</div>
+<p>La nouvelle fenêtre affiche un message indiquant qu’un enregistrement est en cours.
+Toutes les interactions avec le site depuis cette fenêtre sont immédiatement
+reportées dans la liste des commandes.</p>
+<p>À tout moment, vous pouvez interrompre l’enregistrement (et le reprendre plus tard)
+en cliquant sur l’icône rouge dans l’IDE.</p>
+<p>À gauche de l’IDE, vous avez la liste des tests. Vous pouvez ainsi faire plusieurs
+enregistrements différents correspondant à plusieurs scénarios de test différents.</p>
+<p>Vous pouvez rejouer un test grâce aux boutons <span class="guilabel">play</span>.</p>
+<div class="figure align-default" id="id3">
+<img alt="../_images/selenium_ide_enregistrement.png" src="../_images/selenium_ide_enregistrement.png" />
+<p class="caption"><span class="caption-text">Le résultat d’un enregistrement</span><a class="headerlink" href="#id3" title="Lien permanent vers cette image">¶</a></p>
+</div>
+</div>
+<div class="section" id="notion-de-commande">
+<h3>Notion de commande<a class="headerlink" href="#notion-de-commande" title="Lien permanent vers ce titre">¶</a></h3>
+<p>L’interaction avec le navigateur est représentée par des commandes. Une commande
+à un nom, une cible (<em>target</em>) et une valeur associée (<em>value</em>). La valeur est
+un champ optionnel utilisé par certaines commandes.</p>
+<p>Par exemple, la commande <code class="docutils literal notranslate"><span class="pre">type</span></code> permet de simuler la saisie au clavier. La cible
+indique l’élément dans la page qui reçoit la saisie. Pour référencer un élément
+dans une page vous pouvez :</p>
+<ul class="simple">
+<li><p>fournir son ID HTML sous la forme <code class="docutils literal notranslate"><span class="pre">id=mon_id</span></code></p></li>
+<li><p>fournir le nom d’un champ de formulaire sous la forme <code class="docutils literal notranslate"><span class="pre">name=nom_de_l_input</span></code></p></li>
+<li><p>fournir un <a class="reference external" href="https://www.w3schools.com/cssref/css_selectors.asp">sélecteur CSS</a> sous la forme <code class="docutils literal notranslate"><span class="pre">css=div&gt;p</span></code></p></li>
+<li><p>fournir un <a class="reference external" href="https://www.w3schools.com/xml/xpath_syntax.asp">chemin XPath</a> sous la forme <code class="docutils literal notranslate"><span class="pre">xpath=//div/p</span></code></p></li>
+</ul>
+<p>Pour la commande <code class="docutils literal notranslate"><span class="pre">type</span></code>, la valeur correspond à la valeur saisie par l’utilisateur.
+Ainsi pour simuler la saisie d’un champ de formulaire dont le nom est <code class="docutils literal notranslate"><span class="pre">adresse</span></code>,
+il est possible d’utiliser :</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>commande</p></th>
+<th class="head"><p>cible</p></th>
+<th class="head"><p>valeur</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>type</p></td>
+<td><p>name=adresse</p></td>
+<td><p>12 rue de là-bas</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>La documentation des commandes est fournie par l’outil dans l’onglet
+<span class="guilabel">Reference</span> en bas.</p>
+<p>Vous pouvez également vous reporter à la documentation officielle :</p>
+<blockquote>
+<div><p><a class="reference external" href="https://www.selenium.dev/selenium-ide/docs/en/api/commands">https://www.selenium.dev/selenium-ide/docs/en/api/commands</a></p>
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="finaliser-un-test">
+<h3>Finaliser un test<a class="headerlink" href="#finaliser-un-test" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Une fois l’enregistrement terminé, le test n’est pas finalisé. Il est nécessaire
+de faire une passe sur les commandes enregistrées pour :</p>
+<ul class="simple">
+<li><p>supprimer les commandes inutiles</p></li>
+<li><p>ajouter des assertions</p></li>
+</ul>
+<p>L’enregistreur va créer des commandes qui ne sont pas strictement utiles à
+votre test. Il est conseillé de repasser sur toutes les commandes créées et de
+supprimer celles qui ne sont pas strictement indispensables. En effet, ces
+commandes pourraient faire échouer plus tard un test suite à des évolutions
+d’IHM. Elles concourent donc à fragiliser les tests.</p>
+<p>Les tests créés avec <a class="reference external" href="https://www.selenium.dev/selenium-ide/">Selenium IDE</a> doivent, comme tous les tests automatisés,
+être auto-validant. Cela signifie qu’ils doivent comporter des assertions
+pour vérifier l’état du système. Les assertions ne peuvent pas être ajoutées
+automatiquement par l’enregistreur. Il nous faut donc ajouter nous-mêmes des
+commandes d’assertion avec l’IDE. Avec un clic droit dans la liste des commandes,
+vous pouvez insérer une nouvelle commande et choisir parmi la liste des assertions.</p>
+<div class="figure align-default" id="id4">
+<img alt="../_images/selenium_ide_assertions.png" src="../_images/selenium_ide_assertions.png" />
+<p class="caption"><span class="caption-text">Le test après suppression des commandes inutiles et ajout des assertions</span><a class="headerlink" href="#id4" title="Lien permanent vers cette image">¶</a></p>
+</div>
+</div>
+<div class="section" id="sauver-les-tests">
+<h3>Sauver les tests<a class="headerlink" href="#sauver-les-tests" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Les tests peuvent être sauvés dans un fichier avec l’extension <code class="file docutils literal notranslate"><span class="pre">.side</span></code>.
+Vous pouvez charger ces fichiers dans <a class="reference external" href="https://www.selenium.dev/selenium-ide/">Selenium IDE</a> pour les exécuter à nouveau
+mais vous pouvez aussi exécuter vos tests à partir de la ligne de commandes
+(ce qui les rend exécutables dans le cadre d’un processus d’intégration continue).
+Pour cela, vous aurez besoin de l’application <code class="docutils literal notranslate"><span class="pre">selenium-side-runner</span></code> et de un
+ou plusieurs WebDrider (Cf. ci-dessous). Pour en savoir plus, vous pouvez vous
+reporter à la documentation officielle :</p>
+<blockquote>
+<div><p><a class="reference external" href="https://www.seleniumhq.org/selenium-ide/docs/en/introduction/command-line-runner/">https://www.seleniumhq.org/selenium-ide/docs/en/introduction/command-line-runner/</a></p>
+</div></blockquote>
+</div>
+<div class="section" id="creation-de-suites-de-tests">
+<h3>Création de suites de tests<a class="headerlink" href="#creation-de-suites-de-tests" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Vous pouvez regrouper les tests en suites. Par exemple, vous pouvez faire
+une suite par chaque macro fonctionnalité de votre application. Dans la fenêtre
+gauche de l’IDE, vous pouvez passer de la vue des tests à la vue d’exécution
+mais également à la vue des suites.</p>
+<div class="figure align-default" id="id5">
+<img alt="../_images/selenium_ide_suite.png" src="../_images/selenium_ide_suite.png" />
+<p class="caption"><span class="caption-text">La gestion des suites dans Selenium IDE</span><a class="headerlink" href="#id5" title="Lien permanent vers cette image">¶</a></p>
+</div>
+<p>La création de suites permet d’organiser les scénarios de test et,
+éventuellement, d’exporter plusieurs tests en même temps.</p>
+</div>
+<div class="section" id="bonnes-pratiques">
+<h3>Bonnes pratiques<a class="headerlink" href="#bonnes-pratiques" title="Lien permanent vers ce titre">¶</a></h3>
+<p><a class="reference external" href="https://www.selenium.dev/selenium-ide/">Selenium IDE</a> permet de créer des tests d’acceptation pour des interfaces Web.
+Mais pour que ces tests soient exploitables, ils doivent rester maintenables et
+évolutifs. En effet, si telle ou telle fonctionnalité évolue, certains tests
+devront évoluer en conséquence. Il est courant pour les développeurs de devoir
+reprendre et modifier des tests existants.</p>
+<p>Pour qu’un test créé avec <a class="reference external" href="https://www.selenium.dev/selenium-ide/">Selenium IDE</a> ne soit pas trop complexe à maintenir,
+il faut donc qu’il reste compréhensible au lecteur. Pour cela, chaque commande
+peut être documentée grâce au champ description.</p>
+<p>Il faut aussi garder à l’esprit que la complexité d’un test est parfois liée
+à la complexité du système à tester. Pour qu’une page Web soit facilement
+exploitable par <a class="reference external" href="https://www.selenium.dev/selenium-ide/">Selenium IDE</a>, il faut que les développeurs respectent au mieux
+certaines pratiques au moment de création de la page elle-même :</p>
+<ul class="simple">
+<li><p>identification des pages. Chaque page HTML devrait avoir un marqueur permettant
+de l’identifier (par un exemple un ID sur la balise <code class="docutils literal notranslate"><span class="pre">&lt;html&gt;</span></code>). Cela permet
+de créer des assertions efficaces pour savoir si l’utilisateur se trouve bien
+sur une page donnée.</p></li>
+<li><p>identification de chaque élément important indépendamment du rendu. Les champs
+de formulaire, les messages d’erreur ou d’information devraient également
+être identifiables facilement avec un attribut ID. Même s’il est possible
+d’employer des sélecteurs CSS et des chemins XPath avec <a class="reference external" href="https://www.selenium.dev/selenium-ide/">Selenium IDE</a>, ils
+peuvent rendre le test dépendant de la structure de la page. Dans ce cas, le
+test peut être fragilisé par une simple modification cosmétique de la page.</p></li>
+<li><p>ajout de méta-informations. Il ne faut pas hésiter à utiliser des
+méta-informations (comme les attributs <code class="docutils literal notranslate"><span class="pre">data-*</span></code> HTML) pour fournir les
+informations de contexte qui peuvent être nécessaires à l’extraction de
+l’information par les tests.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="exercice">
+<h2>Exercice<a class="headerlink" href="#exercice" title="Lien permanent vers ce titre">¶</a></h2>
+<div class="exercice admonition">
+<p class="admonition-title">Exercice : Pizza EE - automatisation des tests avec Selenium IDE</p>
+<p>Utilisez Selenium IDE pour automatiser les tests de commande de Pizza
+pour l’application Pizza EE.</p>
+<p>Automatisez les tests suivants :</p>
+<ul class="simple">
+<li><p>Commander une pizza avec succès</p></li>
+<li><p>Commander une pizza sans sélectionner de pizza</p></li>
+<li><p>Commander une pizza sans fournir de numéro de téléphone</p></li>
+<li><p>Afficher le détail de la commande suivante</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Ne vous contentez pas d’enregistrer les commandes avec l’IDE, pensez
+à revoir les tests en supprimant les commandes inutiles et en ajoutant
+des assertions.</p>
+</div>
+<p>Sauvegardez les tests dans un fichier avec l’extension <code class="file docutils literal notranslate"><span class="pre">.side</span></code> afin
+de pouvoir les envoyer par mail.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="unittest.html" class="btn btn-neutral float-left" title="Les tests unitaires automatisés en Python" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Précédent</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+
+    </p>
+  </div>
+  <div  role="contentinfo">
+    <p>
+    Par David Gayerie
+    - <script>!function(){function e(e){return e.replace(/[a-zA-Z]/g,function(e){return String.fromCharCode((e<="Z"?90:122)>=(e=e.charCodeAt(0)+13)?e:e-26)})}!function(e){document.write("<a href='mailto:"+e+"'>"+e+"</a>")}(e("qnivq.tnlrevr@erfrnh-pq.arg"))}();</script>
+    </p>
+    <p>Ce support est disponible en téléchargement au format <a class="reference download" href="https://gayerie.dev/epsi-poei-202010/archive/gh-pages.zip">HTML</a>
+    </p>
+    <p class="copyright">
+      <a class="reference external image-reference" href="https://creativecommons.org/licenses/by-sa/3.0/fr/"><img alt="Licence Creative Commons" src="https://i.creativecommons.org/l/by-sa/3.0/fr/88x31.png" /></a>
+      Cette œuvre est mise à disposition selon les termes de la <a class="reference external" href="https://creativecommons.org/licenses/by-sa/3.0/fr/">Licence Creative Commons Attribution</a> -  Partage dans les Mêmes Conditions 3.0 France
+    </p>
+  </div>
+
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
