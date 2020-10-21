@@ -1,0 +1,469 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="fr" >
+<head>
+  <meta charset="utf-8">
+  <meta content="David Gayerie" name="author" />
+<meta content="Tests unitaires automatisés en shell" name="description" />
+<meta content="test unitaire, shell, bash, shunit2" name="keywords" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Les tests unitaires automatisés pour le shell &mdash; Documentation Les tests </title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom_rtd_theme.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Recherche" href="../search.html" />
+    <link rel="next" title="Les tests unitaires automatisés en Python" href="unittest.html" />
+    <link rel="prev" title="Les tests d’acceptation" href="test_acceptation.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> Les tests
+          
+
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Recherche dans les pages" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Méthodologie autour des tests</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction à l’ingénierie des tests</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html#strategie-de-test-et-types-de-test">Stratégie de test et types de test</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="introduction.html#les-tests-de-non-regression">Les tests de non régression</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html#les-7-principes-des-tests">Les 7 principes des tests</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="test_acceptation.html">Les tests d’acceptation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="test_acceptation.html#methode-de-gestion-de-projet">Méthode de gestion de projet</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="test_acceptation.html#notion-d-exigence">Notion d’exigence</a></li>
+<li class="toctree-l3"><a class="reference internal" href="test_acceptation.html#recette-fonctionnelle">Recette fonctionnelle</a></li>
+<li class="toctree-l3"><a class="reference internal" href="test_acceptation.html#notion-de-cas-de-test">Notion de cas de test</a></li>
+<li class="toctree-l3"><a class="reference internal" href="test_acceptation.html#scenario-de-test">Scénario de test</a></li>
+<li class="toctree-l3"><a class="reference internal" href="test_acceptation.html#exercice">Exercice</a></li>
+<li class="toctree-l3"><a class="reference internal" href="test_acceptation.html#la-matrice-de-tracabilite-des-exigences">La matrice de traçabilité des exigences</a></li>
+<li class="toctree-l3"><a class="reference internal" href="test_acceptation.html#id1">Exercice</a></li>
+<li class="toctree-l3"><a class="reference internal" href="test_acceptation.html#rapport-de-test">Rapport de test</a></li>
+<li class="toctree-l3"><a class="reference internal" href="test_acceptation.html#id2">Exercice</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="test_acceptation.html#methodes-agiles">Méthodes agiles</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="test_acceptation.html#le-behavior-driven-developement-bdd">Le <em>Behavior Driven Developement</em> (BDD)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Les tests unitaires automatisés pour le shell</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#structure-d-un-script-de-tests">Structure d’un script de tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#execution-des-tests">Exécution des tests</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="unittest.html">Les tests unitaires automatisés en Python</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="unittest.html#structure-d-une-classe-de-test">Structure d’une classe de test</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="unittest.html#execution-des-tests">Exécution des tests</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="unittest.html#tester-des-exceptions">Tester des exceptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="unittest.html#utilisation-de-doublure">Utilisation de doublure</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="unittest.html#utilisation-d-un-objet-mock">Utilisation d’un objet <em>mock</em></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="selenium.html">Selenium</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="selenium.html#selenium-ide">Selenium IDE</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="selenium.html#installation">Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="selenium.html#enregistrer-des-commandes">Enregistrer des commandes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="selenium.html#notion-de-commande">Notion de commande</a></li>
+<li class="toctree-l3"><a class="reference internal" href="selenium.html#finaliser-un-test">Finaliser un test</a></li>
+<li class="toctree-l3"><a class="reference internal" href="selenium.html#sauver-les-tests">Sauver les tests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="selenium.html#creation-de-suites-de-tests">Création de suites de tests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="selenium.html#bonnes-pratiques">Bonnes pratiques</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="selenium.html#exercice">Exercice</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Les tests</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Les tests unitaires automatisés pour le shell</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <div class="rst-breadcrumbs-buttons" role="navigation" aria-label="breadcrumb navigation">
+      
+        <a href="unittest.html" class="btn btn-neutral float-right" title="Les tests unitaires automatisés en Python" accesskey="n">Suivant <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="test_acceptation.html" class="btn btn-neutral float-left" title="Les tests d’acceptation" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Précédent</a>
+      
+  </div>
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="les-tests-unitaires-automatises-pour-le-shell">
+<h1>Les tests unitaires automatisés pour le shell<a class="headerlink" href="#les-tests-unitaires-automatises-pour-le-shell" title="Lien permanent vers ce titre">¶</a></h1>
+<p>Un test unitaire automatisé est un programme qui se découpe en trois étapes dites
+AAA pour <em>Arrange</em>, <em>Act</em>, <em>Assert</em>.</p>
+<p>Le système éprouvé par le test est parfois appelé <strong>SUT</strong> (<em>System Under Test</em>).</p>
+<dl class="simple">
+<dt>Arrange</dt><dd><p>La mise en place de l’environnement : création et initialisation des
+éléments nécessaires à l’exécution du test.</p>
+</dd>
+<dt>Act</dt><dd><p>Le test proprement dit.</p>
+</dd>
+<dt>Assert</dt><dd><p>La vérification des résultats obtenus par l’action. On dit qu’un test est
+auto-validant (<em>self-validating</em>). Il est capable vérifier si le SUT a eu
+le comportement attendu.</p>
+</dd>
+</dl>
+<p>Pour réaliser des tests unitaires, on utilise généralement une bibliothèque spécialisée
+pour nous fournir une aide à l’implémentation et à l’exécution. On parle souvent
+de la famille des <strong>XUnit</strong> qui sont toutes les bibliothèques développées dans
+différents langages de programmation et s’inspirant toutes de JUnit (un <em>framework</em>
+de test écrit en et pour Java). Il existe même une implémentation pour tester les
+scripts <em>shell</em> : <a class="reference external" href="https://github.com/kward/shunit2">shunit2</a>.</p>
+<p>Pour installer <a class="reference external" href="https://github.com/kward/shunit2">shunit2</a>, il suffit de télécharger le script exécutable
+et de le placer dans le répertoire des scripts de tests unitaires de son projet.</p>
+<p><a class="reference download external" download="" href="https://raw.githubusercontent.com/kward/shunit2/v2.1.8/shunit2"><code class="xref download docutils literal notranslate"><span class="pre">Télécharger</span> <span class="pre">le</span> <span class="pre">script</span> <span class="pre">shunit2</span></code></a></p>
+<div class="section" id="structure-d-un-script-de-tests">
+<h2>Structure d’un script de tests<a class="headerlink" href="#structure-d-un-script-de-tests" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Les tests sont regroupés dans un script. Ils se présentent sous la forme de fonctions
+dont le nom commence par <code class="docutils literal notranslate"><span class="pre">test</span></code>. Le script se termine en incluant le script
+fourni par <a class="reference external" href="https://github.com/kward/shunit2">shunit2</a>.</p>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-text">Exemple d’un script de test</span><a class="headerlink" href="#id1" title="Lien permanent vers ce code">¶</a></div>
+<div class="highlight-shell notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9</pre></div></td><td class="code"><div class="highlight"><pre><span></span>testAFaireEnPremier<span class="o">()</span> <span class="o">{</span>
+  <span class="nb">echo</span> <span class="s2">&quot;à implémenter&quot;</span>
+<span class="o">}</span>
+
+testAFaireEnSecond<span class="o">()</span> <span class="o">{</span>
+  <span class="nb">echo</span> <span class="s2">&quot;à implémenter&quot;</span>
+<span class="o">}</span>
+
+<span class="nb">source</span> ./shunit2
+</pre></div>
+</td></tr></table></div>
+</div>
+<p>Il suffit d’exécuter ce script. L’inclusion à <a class="reference external" href="https://github.com/kward/shunit2">shunit2</a> à la fin du script (ligne 10)
+déclenche l’appel de toutes les fonctions de test et la génération d’un rapport
+pour indiquer les tests en succès et les tests en échec.</p>
+<p>Il est possible d’exécuter des instructions avant et après chaque test pour
+allouer et désallouer des ressources nécessaires à l’exécution des
+tests. On redéfinit pour cela les fonctions <code class="docutils literal notranslate"><span class="pre">setUp</span></code> et <code class="docutils literal notranslate"><span class="pre">tearDown</span></code>.</p>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-text">Exemple d’utilisation de setUp/tearDown</span><a class="headerlink" href="#id2" title="Lien permanent vers ce code">¶</a></div>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>setUp<span class="o">()</span> <span class="o">{</span>
+  <span class="nb">echo</span> <span class="s2">&quot;à appeler avant chaque test&quot;</span>
+<span class="o">}</span>
+
+tearDown<span class="o">()</span> <span class="o">{</span>
+  <span class="nb">echo</span> <span class="s2">&quot;à appeler après chaque test&quot;</span>
+<span class="o">}</span>
+
+testAFaireEnPremier<span class="o">()</span> <span class="o">{</span>
+  <span class="nb">echo</span> <span class="s2">&quot;à implémenter&quot;</span>
+<span class="o">}</span>
+
+testAFaireEnSecond<span class="o">()</span> <span class="o">{</span>
+  <span class="nb">echo</span> <span class="s2">&quot;à implémenter&quot;</span>
+<span class="o">}</span>
+
+<span class="nb">source</span> ./shunit2
+</pre></div>
+</div>
+</div>
+<p>Pour réaliser les assertions, on peut utiliser les fonctions fournies par <a class="reference external" href="https://github.com/kward/shunit2">shunit2</a>.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Fonction d’assertion</p></th>
+<th class="head"><p>description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>assertEquals [message] expected actual</p></td>
+<td><p>Vérifie que la valeur attendue (<em>expected</em>) est égale à la valeur obtenue (<em>actual</em>). On peut optionnellement fournir un message d’erreur à afficher dans le rapport si ce n’est pas le cas.</p></td>
+</tr>
+<tr class="row-odd"><td><p>assertNotEquals [message] expected actual</p></td>
+<td><p>Vérifie que la valeur attendue (<em>expected</em>) n’est pas égale à la valeur obtenue (<em>actual</em>). On peut optionnellement fournir un message d’erreur à afficher dans le rapport si ce n’est pas le cas.</p></td>
+</tr>
+<tr class="row-even"><td><p>assertContains [message] expected actual</p></td>
+<td><p>Vérifie que la valeur attendue (<em>expected</em>) contient la valeur obtenue (<em>actual</em>). Il peut s’agit d’une partie d’une chaîne de caractère ou d’un nombre. On peut optionnellement fournir un message d’erreur à afficher dans le rapport si ce n’est pas le cas.</p></td>
+</tr>
+<tr class="row-odd"><td><p>assertNotContains [message] expected actual</p></td>
+<td><p>Vérifie que la valeur attendue (<em>expected</em>) ne contient pas la valeur obtenue (<em>actual</em>). On peut optionnellement fournir un message d’erreur à afficher dans le rapport si ce n’est pas le cas.</p></td>
+</tr>
+<tr class="row-even"><td><p>assertNull [message] actual</p></td>
+<td><p>Vérifie que la valeur obtenue (<em>actual</em>) est nulle ou vide s’il s’agit d’une chaîne de caractères. On peut optionnellement fournir un message d’erreur à afficher dans le rapport si ce n’est pas le cas.</p></td>
+</tr>
+<tr class="row-odd"><td><p>assertNotNull [message] actual</p></td>
+<td><p>Vérifie que la valeur obtenue (<em>actual</em>) n’est pas nulle ou vide s’il s’agit d’une chaîne de caractères. On peut optionnellement fournir un message d’erreur à afficher dans le rapport si ce n’est pas le cas.</p></td>
+</tr>
+<tr class="row-even"><td><p>assertTrue [message] condition</p></td>
+<td><p>Vérifie que la condition est vraie. On peut optionnellement fournir un message d’erreur à afficher dans le rapport si ce n’est pas le cas.</p></td>
+</tr>
+<tr class="row-odd"><td><p>assertFalse [message] condition</p></td>
+<td><p>Vérifie que la condition est fausse. On peut optionnellement fournir un message d’erreur à afficher dans le rapport si ce n’est pas le cas.</p></td>
+</tr>
+<tr class="row-even"><td><p>fail [message]</p></td>
+<td><p>Fait échouer immédiatement le test. On peut optionnellement fournir un message d’erreur à afficher dans le rapport.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="literal-block-wrapper docutils container" id="id3">
+<div class="code-block-caption"><span class="caption-text">Exemples d’assertion</span><a class="headerlink" href="#id3" title="Lien permanent vers ce code">¶</a></div>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>testSed<span class="o">()</span> <span class="o">{</span>
+  <span class="nv">value</span><span class="o">=</span><span class="k">$(</span><span class="nb">echo</span> <span class="s2">&quot;hello world&quot;</span> <span class="p">|</span> sed <span class="s2">&quot;s/world/monde/&quot;</span><span class="k">)</span>
+
+  assertEquals <span class="s2">&quot;hello monde&quot;</span> <span class="s2">&quot;</span><span class="nv">$value</span><span class="s2">&quot;</span>
+<span class="o">}</span>
+
+testRm<span class="o">()</span> <span class="o">{</span>
+  <span class="nv">file</span><span class="o">=</span><span class="s2">&quot;/tmp/fichier.test&quot;</span>
+  touch <span class="nv">$file</span>
+
+  rm <span class="nv">$file</span>
+
+  assertFalse <span class="s2">&quot;[ -e </span><span class="nv">$file</span><span class="s2"> ]&quot;</span>
+<span class="o">}</span>
+
+<span class="nb">source</span> ./shunit2
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="execution-des-tests">
+<h2>Exécution des tests<a class="headerlink" href="#execution-des-tests" title="Lien permanent vers ce titre">¶</a></h2>
+<p>En rendant le script exécutable, il suffit de lancer ce script pour produire un
+rapport de test.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ ./test_commandes.sh
+testSed
+testRm
+
+Ran <span class="m">2</span> tests.
+
+OK
+</pre></div>
+</div>
+<div class="exercice admonition">
+<p class="admonition-title">Exercice - Tests unitaires d’un script de vérification de mot de passe</p>
+<p>Écrire les tests unitaires pour le script <a class="reference download internal" download="" href="../_downloads/74773ff1b262857f47ed1ccaf15f03d0/check_password.sh"><code class="xref download docutils literal notranslate"><span class="pre">check_password.sh</span></code></a>.
+Ce script teste le mot de passe passé en paramètre et produit le code retour
+<code class="docutils literal notranslate"><span class="pre">0</span></code> si le mot de passe contient les éléments attendus. Sinon le script
+retourne le code retour <code class="docutils literal notranslate"><span class="pre">1</span></code>. Pour être valide un mot de passe doit :</p>
+<ul class="simple">
+<li><p>contenir au moins 8 caractères</p></li>
+<li><p>contenir une lettre minuscule</p></li>
+<li><p>contenir une lettre majuscule</p></li>
+<li><p>contenir un chiffre</p></li>
+</ul>
+<div class="literal-block-wrapper docutils container" id="id4">
+<div class="code-block-caption"><span class="caption-text">le fichier <code class="file docutils literal notranslate"><span class="pre">check_password.sh</span></code></span><a class="headerlink" href="#id4" title="Lien permanent vers ce code">¶</a></div>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+
+<span class="c1">######################################################</span>
+<span class="c1"># Test la validité du mot de passe passé en paramètre</span>
+<span class="c1"># Les mot de passe doit :</span>
+<span class="c1"># * contenir au moins 8 caractères</span>
+<span class="c1"># * contenir une lettre minuscule</span>
+<span class="c1"># * contenir une lettre majuscule</span>
+<span class="c1"># * contenir un chiffre</span>
+<span class="c1">######################################################</span>
+
+<span class="nv">PASSWORD</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$1</span><span class="s2">&quot;</span>
+
+<span class="o">[[</span> <span class="si">${#</span><span class="nv">PASSWORD</span><span class="si">}</span> -ge <span class="m">8</span> <span class="o">&amp;&amp;</span> <span class="s2">&quot;</span><span class="nv">$PASSWORD</span><span class="s2">&quot;</span> <span class="o">=</span>~ <span class="o">[</span>A-Z<span class="o">]</span>+ <span class="o">&amp;&amp;</span> <span class="s2">&quot;</span><span class="nv">$PASSWORD</span><span class="s2">&quot;</span> <span class="o">=</span>~ <span class="o">[</span>a-z<span class="o">]</span>+ <span class="o">&amp;&amp;</span> <span class="s2">&quot;</span><span class="nv">$PASSWORD</span><span class="s2">&quot;</span> <span class="o">=</span>~ <span class="o">[</span><span class="m">0</span>-9<span class="o">]</span>+ <span class="o">]]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="unittest.html" class="btn btn-neutral float-right" title="Les tests unitaires automatisés en Python" accesskey="n" rel="next">Suivant <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="test_acceptation.html" class="btn btn-neutral float-left" title="Les tests d’acceptation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Précédent</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+
+    </p>
+  </div>
+  <div  role="contentinfo">
+    <p>
+    Par David Gayerie
+    - <script>!function(){function e(e){return e.replace(/[a-zA-Z]/g,function(e){return String.fromCharCode((e<="Z"?90:122)>=(e=e.charCodeAt(0)+13)?e:e-26)})}!function(e){document.write("<a href='mailto:"+e+"'>"+e+"</a>")}(e("qnivq.tnlrevr@erfrnh-pq.arg"))}();</script>
+    </p>
+    <p>Ce support est disponible en téléchargement au format <a class="reference download" href="https://github.com/spoonless/epsi-poei-202010/archive/gh-pages.zip">HTML</a>
+    </p>
+    <p class="copyright">
+      <a class="reference external image-reference" href="https://creativecommons.org/licenses/by-sa/3.0/fr/"><img alt="Licence Creative Commons" src="https://i.creativecommons.org/l/by-sa/3.0/fr/88x31.png" /></a>
+      Cette œuvre est mise à disposition selon les termes de la <a class="reference external" href="https://creativecommons.org/licenses/by-sa/3.0/fr/">Licence Creative Commons Attribution</a> -  Partage dans les Mêmes Conditions 3.0 France
+    </p>
+  </div>
+
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
